@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xv
 # SPDX-FileCopyrightText: 2024 Yamamoto Kurumi mail<s23c1144fj@s.chibakoudai.jp>
 # SPDX-License-Identifier: BSD-3-Clause
 ng () {
@@ -7,9 +7,18 @@ ng () {
 }
 
 res=0
+### NOMAL INPUT ###
+out=$(seq 5 |./PLUS)
+[ "${out}" = 15 ] || ng "$LINENO"
 
-out=$(seq 5 | ./PULS)
-[ "${out}" = 15 ] || ng "LINENO"
+### STRANGE INPUT ##
+out=$(echo あ |./PLUS)
+[ "$?" = 1 ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
+
+out=$(echo | ./PLUS)
+[ "$?" = 1 ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
 
 [ "${res}" = 0 ] && echo OK 
 exit $res
