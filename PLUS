@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+# SPDX-FileCopyrightText: 2024 Yamamoto Kurumi mail<s23c1144fj@s.chibakoudai.jp>
+# SPDX-License-Identifier: BSD-3-Clause
+import sys
+
+ans = 0 #0.0を0に変更
+
+for line in sys.stdin:
+    try:
+        ans += int(line) #文字を整数で出したい
+    except:
+        ans += float(line)
+
+print(ans)
+
